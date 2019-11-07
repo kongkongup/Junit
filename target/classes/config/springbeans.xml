@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<!-- properties file 情報-->	
+	<context:property-placeholder 
+		location="classpath:properties/values.properties"  />
+		
+	<!-- @Component @Value @Autowired で設定した変数をスキャンする設定	 -->
+	<context:component-scan base-package="devjjo.junit.dto" />
+    <!-- StringPrinterクラスをbeanに登録する-->
+    <bean id="stringPrinter" class="devjjo.junit.dto.StringPrinter" />
+    
+    <!-- ConsolPrinterクラスをbeanで登録する -->
+    <bean id="consolePrinter" class="devjjo.junit.dto.ConsolePrinter" />
+    
+    <!-- Helloクラスを beanで登録する -->
+    <bean id="helloPrinter" class="devjjo.junit.dto.Hello" >
+        <!-- setter injection 設定 -->
+        <property name="name" value ="金ヨンヒョン"/>
+        <property name="printer" ref ="stringPrinter"/>
+    </bean>    
+    
+	
+</beans>
+
